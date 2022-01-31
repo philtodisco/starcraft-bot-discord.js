@@ -1,7 +1,7 @@
 require('dotenv').config()
 
-// Require the necessary discord.js classes
 const { Client, Intents } = require('discord.js');
+const axios = require('axios')
 const token = process.env.TOKEN
 const clientId = process.env.CLIENT_ID
 const guildId = process.env.GUILD_ID
