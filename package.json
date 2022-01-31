@@ -1,0 +1,22 @@
+{
+  "name": "starcraft-bot-discord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/philtodisco/starcraft-bot-discord.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/philtodisco/starcraft-bot-discord.js/issues"
+  },
+  "homepage": "https://github.com/philtodisco/starcraft-bot-discord.js#readme",
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  }
+}
