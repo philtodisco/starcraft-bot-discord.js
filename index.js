@@ -3,6 +3,8 @@ require('dotenv').config()
 // Require the necessary discord.js classes
 const { Client, Intents } = require('discord.js');
 const token = process.env.TOKEN
+const clientId = process.env.CLIENT_ID
+const guildId = process.env.GUILD_ID
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] })
@@ -11,6 +13,16 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 client.once('ready', () => {
 	console.log('Ready!');
 });
+
+client.on('messageCreate', (message) => {
+    let messageContent = message.content.toLowerCase()
+    if (messageContent === 'test') {
+        message.channel.send('this works');
+        console.log('works')
+        console.log(message)
+    }
+});
+
 
 // Login to Discord with your client's token
 client.login(token);
