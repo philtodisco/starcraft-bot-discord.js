@@ -5,7 +5,7 @@ const { Client, Intents } = require('discord.js');
 const token = process.env.TOKEN
 
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] })
 
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
