@@ -11,8 +11,10 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
-	console.log('Ready!');
+    console.log('Ready!');
 });
+
+client.login(token);
 
 // test command
 // client.on('messageCreate', (message) => {
@@ -23,83 +25,23 @@ client.once('ready', () => {
 //     }
 // });
 
-
-
-// client.on('messageCreate', (message) => {
-//     let messageContent = message.content.toLowerCase()
-//     if(messageContent === 'test') {
-//         axios.get('https://starcraft-api.herokuapp.com/units')
-//   .then(res => {
-//     console.log('Status Code:', res.status);
-//     console.log(res.data)
-
-//     const units = res.data;
-
-//     for(unit of units) {
-//         message.channel.send(`Got user with id: ${unit._id}, name: ${unit.name}`);
-//     } 
-//   })
-//   .catch(err => {
-//     console.log('Error: ', err.message);
-//   }); 
-//     }
-// });
-
-client.login(token);
-
-// for (i = 0; i < heyInput.length; i++) {
-//     if (messageContent === heyInput[i]) {
-//     randomHeyResponse = heyResponse[Math.floor(Math.random() * heyResponse.length)]
-//     message.channel.send(randomHeyResponse);
-//     console.log('works')
-// }
-// }
-
-
-// GET all units
-// client.on('messageCreate', (message) => {
-//     let messageContent = message.content.toLowerCase()
-//     axios.get('https://starcraft-api.herokuapp.com/units')
-//     .then(res => {
-//         console.log('Status Code: ', res.status)
-//         let i = 0
-//         let jsonUnits = res.data
-//         let unitName = jsonUnits[i].name
-//         for (i = 0; i < jsonUnits.length; i++) {
-//             if (messageContent === unitName.toLowerCase()) {
-//                 console.log(unitName[i])
-//                 console.log('this mf works') 
-//             }
-//         }
-//     })
-// })
-
 client.on('messageCreate', (message) => {
     let messageContent = message.content
+    //GET all units
     axios.get('https://starcraft-api.herokuapp.com/units')
     .then(res => {
         console.log('Status Code: ', res.status)
-        jsonUnits = res.data
+        let jsonUnits = res.data
+        //iterate over JSON array
         for (let i = 0; i < jsonUnits.length; i++) {
-            if (messageContent === jsonUnits[i].name) {
-                message.channel.send(`This works - ${jsonUnits[i].name}`)
+            let unit = jsonUnits[i]
+            //return message including requested unit info
+            if (messageContent === unit.name) {
+                message.channel.send(`**${unit.name}:** \n**Strong against:** ${unit.goodAgainst} \n**Weak against:** ${unit.weakAgainst}`)
             }
         }
     })
 })
 
-// const axios = require('axios')
-// require('dotenv').config()
-
-// testFunc = () => {
-//     axios.get('https://starcraft-api.herokuapp.com/units')
-//         .then(res => {
-//             console.log('Status Code: ', res.status)
-//             jsonUnits = res.data
-//             for (let i = 0; i < jsonUnits.length; i++){
-                
-//             }
-//         })
-// }
 
 
