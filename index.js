@@ -16,14 +16,7 @@ client.once('ready', () => {
 
 client.login(token);
 
-// test command
-// client.on('messageCreate', (message) => {
-//     let messageContent = message.content.toLowerCase()
-//     if (messageContent === 'test') {
-//         message.channel.send('this works');
-//         console.log('works')
-//     }
-// });
+
 
 client.on('messageCreate', (message) => {
     let messageContent = message.content
@@ -37,7 +30,7 @@ client.on('messageCreate', (message) => {
             let unit = jsonUnits[i]
             //return message including requested unit info
             if (messageContent === unit.name) {
-                message.channel.send(`**${unit.name}:** \n**Strong against:** ${unit.goodAgainst} \n**Weak against:** ${unit.weakAgainst}`)
+                message.channel.send(`__**${unit.name}**__ \n**Strong against:** ${unit.goodAgainst} \n**Weak against:** ${unit.weakAgainst}`)
             }
         }
     })
