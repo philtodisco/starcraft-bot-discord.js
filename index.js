@@ -19,7 +19,7 @@ client.login(token);
 
 
 client.on('messageCreate', (message) => {
-    let messageContent = message.content
+    let messageContent = message.content.toLowerCase()
     //GET all units
     axios.get('https://starcraft-api.herokuapp.com/units')
     .then(res => {
@@ -29,8 +29,8 @@ client.on('messageCreate', (message) => {
         for (let i = 0; i < jsonUnits.length; i++) {
             let unit = jsonUnits[i]
             //return message including requested unit info
-            if (messageContent === unit.name) {
-                message.channel.send(`__**${unit.name}**__ \n**Strong against:** ${unit.goodAgainst} \n**Weak against:** ${unit.weakAgainst}`)
+            if (messageContent === unit.name.toLowerCase()) {
+                message.channel.send(`**${unit.name}:** \n**Race:** ${unit.race} \n**Type:** ${unit.type} \n**Description:** ${unit.description} \n**Targets:** ${unit.targets} \n**Strong against:** ${unit.strongAgainst} \n**Weak against:** ${unit.weakAgainst}`)
             }
         }
     })
